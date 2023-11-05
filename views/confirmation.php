@@ -131,9 +131,20 @@
 <body>
     <div class="container">
         <div class="card">
-            <h1>Appointment Confirmed</h1>
-            <p>Thank you for scheduling an appointment with us. Your appointment has been confirmed.</p>
-            <p>Appointment Details:</p>
+             <?php
+             if ($_GET['update']=="true"){
+                echo" <h1>Appointment Updated</h1>
+                <p>Thank you for scheduling an appointment with us. Your appointment has been updated.</p>
+                <p>Appointment Details:</p>";
+             }
+             else{
+                echo" <h1>Appointment Confirmed</h1>
+                <p>Thank you for scheduling an appointment with us. Your appointment has been confirmed.</p>
+                <p>Appointment Details:</p>";
+             }
+            ?>
+
+           
             <ul>
                 <?php
 
@@ -160,6 +171,10 @@
                 ?>
             </ul>
             <button onclick="window.location.href='../index.php'">Back to Registration</button>
+
+             <!-- Admin Button -->
+             <button onclick="location.href='../index.php?action=admin'" type="button">View Registered Students</button>
+            
         </div>
     </div>
 </body>

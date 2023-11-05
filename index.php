@@ -4,7 +4,7 @@ require_once 'controllers/AdminController.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'register';
 
-$conn = mysqli_connect('webtech.c5ass6jdq6wa.us-east-2.rds.amazonaws.com', 'admin', 'admin12345678', 'webtechdb');
+$conn = mysqli_connect('localhost', 'root', '', 'your_dbname');
 
 if (!$conn) {
     die('Connection failed: ' . mysqli_connect_error());

@@ -51,9 +51,27 @@ class RegistrationController {
                     if (empty($umid)) {
                         $errors['umid'] = 'UMID is required';
                     }
+                   
+                    // Check if UMID exists
                     if ($this->student->umidExists($umid)) {
-                        $errors['umid'] = 'UMID already exists.';
+                        // Prompt the user to confirm the update
+                        echo "<script type='text/javascript'>
+                            var update = confirm('UMID already exists. Do you want to update the existing record?');
+                            if(update) {
+                                // Update the existing record
+                                ";
+                                $this->student->updateStudent($umid, $fname, $lname, $project, $email, $phone, $timeslot);
+                                header('Location: views/confirmation.php?fname=' . urlencode($fname) . '&lname=' . urlencode($lname) . '&umid=' . urlencode($umid) . '&project=' . urlencode($project) . '&email=' . urlencode($email) . '&phone=' . urlencode($phone) . '&timeslot=' . urlencode($timeslot) . '&update=' . urlencode('true'));
+                                echo "
+                            } else {
+                                // If the user cancels the update, set an error message
+                                ";
+                                $errors['umid'] = 'UMID already exists.';
+                                echo "
+                            }
+                        </script>";
                     }
+
                     // Check if umid is exactly 8 digits
                     if(!preg_match("/^[0-9]{8}$/", $umid)) {
                         $errors['umid'] = 'UMID must be exactly 8 digits.';
@@ -86,7 +104,7 @@ class RegistrationController {
                         $this->student->insert($fname, $lname, $umid, $project, $email, $phone, $timeslot);
 
                         // Redirect to the confirmation page
-                        header('Location: views/confirmation.php?fname=' . urlencode($fname) . '&lname=' . urlencode($lname) . '&umid=' . urlencode($umid) . '&project=' . urlencode($project) . '&email=' . urlencode($email) . '&phone=' . urlencode($phone) . '&timeslot=' . urlencode($timeslot));
+                        header('Location: views/confirmation.php?fname=' . urlencode($fname) . '&lname=' . urlencode($lname) . '&umid=' . urlencode($umid) . '&project=' . urlencode($project) . '&email=' . urlencode($email) . '&phone=' . urlencode($phone) . '&timeslot=' . urlencode($timeslot). '&update=' . urlencode('false'));
                         exit;
                     }
                 }

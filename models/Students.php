@@ -48,5 +48,19 @@ class Student {
 
         return $count;
     }
+
+    public function updateStudent($umid, $fname, $lname, $project, $email, $phone, $timeslot) {
+        // SQL query to update a student
+        $sql = "UPDATE students SET fname = ?, lname = ?, project = ?, email = ?, phone = ?, timeslot = ? WHERE umid = ?";
+    
+        // Prepare the SQL statement
+        $stmt = $this->conn->prepare($sql);
+    
+        // Bind the parameters
+        $stmt->bind_param('sssssss', $fname, $lname, $project, $email, $phone, $timeslot, $umid);
+    
+        // Execute the SQL statement
+        $stmt->execute();
+    }
 }
 ?>

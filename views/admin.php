@@ -2,6 +2,31 @@
 <html>
 <head>
     <style>
+         /* Style for the button container */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 5vh; /* Adjust this as needed */
+        }
+        /* Style for the Go Back button */
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
        body {
             font-family: "Roboto", sans-serif;
             background-color: #f5f5f5;
@@ -149,6 +174,11 @@
     </tr>
     <?php endforeach; ?>
 </table>
+<!-- Button Container -->
+<div class="button-container">
+    <!-- Back Button -->
+    <button onclick="history.back()" type="button">Go Back</button>
+</div>
 <?php else: ?>
 <p>No students found.</p>
 <?php endif; ?>

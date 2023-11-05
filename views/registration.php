@@ -3,6 +3,7 @@
 <head>
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
           /* Base styles for all screen sizes */
             body {
@@ -133,10 +134,12 @@
 
 
 <body>
+
+           
             <!-- Start of the Registration Form -->
             <h2>Student Registration</h2>
 
-            <form action="index.php?action=register" method="post">
+            <form action="index.php?action=register" method="post" id="studentform">
 
                 <!-- First Name Field -->
                 <label for="fname">First Name:</label>
