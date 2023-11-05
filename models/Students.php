@@ -50,16 +50,15 @@ class Student {
     }
 
     public function updateStudent($umid, $fname, $lname, $project, $email, $phone, $timeslot) {
-        // SQL query to update a student
-        $sql = "UPDATE students SET fname = ?, lname = ?, project = ?, email = ?, phone = ?, timeslot = ? WHERE umid = ?";
-    
-        // Prepare the SQL statement
+        $sql = "UPDATE students SET fname = :fname, lname = :lname, project = :project, email = :email, phone = :phone, timeslot = :timeslot WHERE umid = :umid";
         $stmt = $this->conn->prepare($sql);
-    
-        // Bind the parameters
-        $stmt->bind_param('sssssss', $fname, $lname, $project, $email, $phone, $timeslot, $umid);
-    
-        // Execute the SQL statement
+        $stmt->bindParam(':fname', $fname);
+        $stmt->bindParam(':lname', $lname);
+        $stmt->bindParam(':umid', $umid);
+        $stmt->bindParam(':project', $project);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':timeslot', $timeslot);
         $stmt->execute();
     }
 }

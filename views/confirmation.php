@@ -148,6 +148,8 @@
             <ul>
                 <?php
 
+                require_once '../models/Students.php';
+                require_once '../models/databaseConnection.php';
                 // Check if the id key is defined in the $_GET superglobal array
                 if (isset($_GET['fname'], $_GET['lname'], $_GET['umid'], $_GET['project'], $_GET['email'], $_GET['phone'], $_GET['timeslot'])) {
                     // Get the appointment ID from the URL
@@ -158,6 +160,13 @@
                     $email = $_GET['email'];
                     $phone = $_GET['phone'];
                     $timeslot = $_GET['timeslot'];
+
+                    // Create a new Student instance
+                    $student = new Student($conn);
+
+                    // Update the student record
+                    $student->updateStudent($umid, $fname, $lname, $project, $email, $phone, $timeslot);
+
                     // Display the appointment details
                     echo '<li>First Name: ' . htmlspecialchars($fname) . '</li>';
                     echo '<li>Last Name: ' . htmlspecialchars($lname) . '</li>';
@@ -167,7 +176,6 @@
                     echo '<li>Phone: ' . htmlspecialchars($phone) . '</li>';
                     echo '<li>Time Slot: ' . htmlspecialchars($timeslot) . '</li>';
                 }
-
                 ?>
             </ul>
             <button onclick="window.location.href='../index.php'">Back to Registration</button>
