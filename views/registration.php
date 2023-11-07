@@ -205,6 +205,9 @@
                 <button type="submit">Submit</button>
             </form>
             <!-- End of the Registration Form -->
+
+            <!-- View Regitration Button -->
+            <button onclick="location.href='index.php?action=admin'" type="button">View Registered Students</button>
     
 </body>
 
@@ -225,6 +228,16 @@
             input = input.substring(0, 3) + '-' + input.substring(3, 6) + '-' + input.substring(6, size);
         }
         e.target.value = input;
+    });
+    document.getElementById("umid").addEventListener("keypress", function(e) {
+        var key = e.key;
+        var regex = /\D/;
+        if (regex.test(key)) {
+            e.preventDefault();
+            document.getElementById("umidError").textContent = "UMID can only contain digits.";
+        } else {
+            document.getElementById("umidError").textContent = "";
+        }
     });
 </script>
 

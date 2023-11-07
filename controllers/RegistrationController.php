@@ -42,11 +42,15 @@ class RegistrationController {
 
                    
                     // Validate the form data
-                    if (empty($fname)) {
-                        $errors['fname'] = 'First name is required';
+                    $fname = $_POST['fname'];
+                    $lname = $_POST['lname'];
+
+                    // Validate the form data
+                    if (empty($fname) || !ctype_alpha(str_replace(' ', '', $fname))) {
+                        $errors['fname'] = 'First name is required and should only contain letters';
                     }
-                    if (empty($lname)) {
-                        $errors['lname'] = 'Last name is required';
+                    if (empty($lname) || !ctype_alpha(str_replace(' ', '', $lname))) {
+                        $errors['lname'] = 'Last name is required and should only contain letters';
                     }
                     if (empty($umid)) {
                         $errors['umid'] = 'UMID is required';
